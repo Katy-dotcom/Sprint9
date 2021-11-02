@@ -1,4 +1,3 @@
-import { Box, FormControl, InputLabel } from "@material-ui/core";
 import React, { useState } from "react";
 import styles from "./SearchBar.module.css";
 

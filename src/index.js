@@ -3,12 +3,17 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { SelectedVideoProvider } from "./Hooks/SelectedVideoContext";
+import {
+  SelectedVideoProvider,
+  FavVideosProvider,
+} from "./Hooks/SelectedVideoContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <SelectedVideoProvider>
-      <App />
+      <FavVideosProvider>
+        <App />
+      </FavVideosProvider>
     </SelectedVideoProvider>
   </React.StrictMode>,
   document.getElementById("root")

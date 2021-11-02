@@ -5,24 +5,21 @@ import { Divider } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 const VideoList = ({ videoArray }) => {
-  const { selectedVideo, setSelectedVideo } = useContext(SelectedVideoContext);
-  console.log("VideoListComp", videoArray);
+  const { setSelectedVideo } = useContext(SelectedVideoContext);
 
   return (
     <>
       {videoArray &&
-        videoArray.items &&
-        videoArray.items.map((video) => (
-          <Link
+        videoArray.map((video) => (
+          <div
             to="/VideoDetail"
             key={video.id.videoId}
             onClick={() => {
               setSelectedVideo(video);
-              // onSearchRelated();
             }}
           >
             <VideoItem video={video}> </VideoItem> <Divider />
-          </Link>
+          </div>
         ))}
     </>
   );

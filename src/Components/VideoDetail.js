@@ -5,7 +5,7 @@ import Card from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 
 const VideoDetail = () => {
-  const { selectedVideo, setSelectedVideo } = useContext(SelectedVideoContext);
+  const { selectedVideo } = useContext(SelectedVideoContext);
 
   if (selectedVideo === undefined) {
     console.log("Video detail: selectedVideo es undefined");

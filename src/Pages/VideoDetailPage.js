@@ -5,7 +5,7 @@ import axios from "axios";
 import VideoList from "../Components/VideoList";
 
 const VideoDetailPage = () => {
-  const { selectedVideo, setSelectedVideo } = useContext(SelectedVideoContext);
+  const { selectedVideo } = useContext(SelectedVideoContext);
   console.log("SelectedVideo", selectedVideo);
 
   const [relatedVideos, setRelatedVideos] = useState([]);
@@ -26,7 +26,7 @@ const VideoDetailPage = () => {
         params: { relatedToVideoId: `${selectedVideo.id.videoId}` },
       });
       console.log("response", response);
-      setRelatedVideos(response.data);
+      setRelatedVideos(response.data.items);
     }
   };
 

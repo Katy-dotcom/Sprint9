@@ -3,4 +3,26 @@
 }
 body {
   margin: 10px;
+  background-color: black;
+  color: white;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a.active {
+  color: rgb(25, 118, 210);
+}
+
+.MuiSvgIcon-root {
+  fill: white;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  margin-right: 20px;
 }

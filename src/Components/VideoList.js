@@ -1,27 +1,28 @@
-import React, { useContext } from "react";
+import React from "react";
+
 import VideoItem from "./VideoItem";
-import { SelectedVideoContext } from "../Hooks/SelectedVideoContext";
-import { Divider } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import Grid from "@mui/material/Grid";
 
 const VideoList = ({ videoArray }) => {
-  const { setSelectedVideo } = useContext(SelectedVideoContext);
-
   return (
-    <>
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        border: 2,
+        borderColor: "primary.main",
+        borderRadius: 3,
+        pb: 2,
+        pr: 2,
+      }}
+    >
       {videoArray &&
         videoArray.map((video) => (
-          <div
-            to="/VideoDetail"
-            key={video.id.videoId}
-            onClick={() => {
-              setSelectedVideo(video);
-            }}
-          >
-            <VideoItem video={video}> </VideoItem> <Divider />
-          </div>
+          <Grid item key={video.id.videoId}>
+            <VideoItem video={video} />
+          </Grid>
         ))}
-    </>
+    </Grid>
   );
 };
 

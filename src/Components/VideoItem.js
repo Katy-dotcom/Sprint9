@@ -1,9 +1,22 @@
 import React, { useContext } from "react";
-import Grid from "@mui/material/Grid";
-import { FavVideosContext } from "../Hooks/SelectedVideoContext";
+import { FavVideosContext } from "../Hooks/videoContext";
+import IconButton from "@mui/material/IconButton";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { red } from "@mui/material/colors";
+import Card from "@mui/material/Card";
+import { CardMedia, Typography, Tooltip } from "@mui/material";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import { SelectedVideoContext } from "../Hooks/videoContext";
+import { Link } from "react-router-dom";
 
 const VideoItem = ({ video }) => {
+  const { handleVideoItemClick, lastViewedVideos } =
+    useContext(SelectedVideoContext);
+
   const { favoriteArray, setFavoriteArray } = useContext(FavVideosContext);
+
   const fav = favoriteArray.some(
     (favoriteVideo) => favoriteVideo.id.videoId === video.id.videoId
   );
@@ -26,32 +39,45 @@ const VideoItem = ({ video }) => {
     }
     // actualizo  el array
     setFavoriteArray(newFavoriteArray);
-    console.log("favoriteArray", favoriteArray);
   };
-  console.log("dentro de video item", "video", video);
 
   return (
     <>
       {video && video.snippet && (
-        <Grid container direction="row" alignItems="center">
-          <Grid item lg={7}>
-            <img
-              src={video.snippet.thumbnails.medium.url}
-              alt="related to the video"
-            ></img>
-          </Grid>
-          <Grid item lg={5}>
-            <div> Video title: {video.snippet.title}</div>
-          </Grid>
-          <button
-            style={
-              fav ? { backgroundColor: "green" } : { backgroundColor: "red" }
-            }
-            onClick={updateFavArray}
+        <Card variant="outlined" sx={{ width: 220 }}>
+          <Link
+            to="/VideoDetail"
+            key={video.id.videoId}
+            onClick={() => {
+              handleVideoItemClick(video);
+              console.log("VideoItemOnclick", lastViewedVideos);
+            }}
           >
-            Favorite
-          </button>
-        </Grid>
+            <CardMedia
+              component="img"
+              image={video.snippet.thumbnails.medium.url}
+              alt="related to the video"
+            />
+            <CardContent>
+              <Tooltip title={video.snippet.title}>
+                <Typography noWrap> {video.snippet.title}</Typography>
+              </Tooltip>
+            </CardContent>
+          </Link>
+          <CardActions>
+            <IconButton aria-label="" onClick={updateFavArray}>
+              {fav ? (
+                <FavoriteOutlinedIcon
+                  sx={{ color: red[800] }}
+                ></FavoriteOutlinedIcon>
+              ) : (
+                <FavoriteBorderIcon
+                  sx={{ color: red[800] }}
+                ></FavoriteBorderIcon>
+              )}
+            </IconButton>{" "}
+          </CardActions>
+        </Card>
       )}
     </>
   );

@@ -1,17 +1,18 @@
 import React, { useContext } from "react";
-import { SelectedVideoContext } from "../Hooks/SelectedVideoContext";
-import CardMedia from "@material-ui/core/CardMedia";
-import Card from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
+import { SelectedVideoContext } from "../Hooks/videoContext";
+import CardMedia from "@mui/material/CardMedia";
+import Card from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import { Link } from "react-router-dom";
 
 const VideoDetail = () => {
   const { selectedVideo } = useContext(SelectedVideoContext);
 
-  if (selectedVideo === undefined) {
-    console.log("Video detail: selectedVideo es undefined");
-  } else {
-    console.log(selectedVideo);
-  }
+  // if (selectedVideo === undefined) {
+  //   console.log("Video detail: selectedVideo es undefined");
+  // } else {
+  //   console.log(selectedVideo);
+  // }
   return (
     <div>
       {selectedVideo === null ? (
@@ -32,6 +33,9 @@ const VideoDetail = () => {
           </CardContent>
         </Card>
       )}
+      <Link to="/History">
+        <div style={{ color: "white" }}></div>
+      </Link>
     </div>
   );
 };

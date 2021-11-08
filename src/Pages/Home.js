@@ -1,41 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import SearchBar from "../Components/SearchBar";
 import VideoList from "../Components/VideoList";
-import VideoDetail from "../Components/VideoDetail";
-import axios from "axios";
 import videoArrayJson from "../viddeoArrayJson.json";
-import Grid from "@material-ui/core/grid";
-import Container from "@material-ui/core/Container";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import FavoriteVideos from "../Components/FavoriteVideos";
+import { FavVideosContext } from "../Hooks/videoContext";
+import SearchHistory from "../Components/SearchHistory";
+import { youtube } from "../Apis/youtube";
+import RecommendedVideos from "../Components/RecommendedVideos";
+import SideBar from "../Components/SideBar";
 
 function Home() {
   const [videoArray, setVideoArray] = useState(videoArrayJson.items);
-  const [lastSearches, setLastSearches] = useState([]);
-
-  // falta añadir try&catch
-
-  const youtube = axios.create({
-    baseURL: "https://www.googleapis.com/youtube/v3",
-    params: {
-      part: "snippet",
-      type: "video",
-      maxResults: 3,
-      key: "AIzaSyDcfqwbssY0fuiBxdY94B_x23O4X2QZLjo",
-    },
-  });
+  const { condensedList, setCondensedList } = useContext(FavVideosContext);
+  const [lastSearchSelectedVideo, setLastSearchSelectedVideo] = useState("");
+  const [showRecommendedVideos, setShowRecommendedVideos] = useState(true);
 
   const handleSubmit = async (termFromSearchBar) => {
-    console.log(termFromSearchBar);
-    const response = await youtube.get("/search", {
-      params: { q: termFromSearchBar },
-    });
-    setVideoArray(response.data.items);
-    console.log(videoArray);
+    try {
+      const response = await youtube.get("/search", {
+        params: { q: termFromSearchBar },
+      });
+      setVideoArray(response.data.items);
+      setShowRecommendedVideos(false);
+
+      const newCondensedItem = {
+        searchedTerm: termFromSearchBar,
+        videos: response.data.items,
+        timestamp: Date.now(),
+      };
+      setCondensedList([newCondensedItem, ...condensedList]);
+    } catch (err) {
+      console.error(`${err}`);
+    }
+  };
+  // funcion que pone showRecommendedVideos a true y actualiza el LastSearchSelectedVideo, la paso a nieto(CodensedListItem) por props
+  const handleLastSearchVideoClick = (videoId) => {
+    setLastSearchSelectedVideo(videoId);
+    setShowRecommendedVideos(true);
   };
 
   return (
     <Container maxWidth="xl">
       <SearchBar onSearch={handleSubmit}></SearchBar>
+      <SideBar></SideBar>
+
       <Grid
         container
         direction="row"
@@ -43,14 +53,28 @@ function Home() {
         alignItems="flex-start"
         spacing={2}
       >
-        <Grid item lg={4}>
-          <VideoDetail></VideoDetail>
-        </Grid>
-        <Grid item lg={4}>
-          <VideoList videoArray={videoArray}></VideoList>
-        </Grid>
-        <Grid item lg={4}>
+        {showRecommendedVideos ? (
+          lastSearchSelectedVideo && (
+            <Grid item lg={6}>
+              <RecommendedVideos
+                videoId={lastSearchSelectedVideo}
+              ></RecommendedVideos>
+            </Grid>
+          )
+        ) : (
+          <Grid item lg={6}>
+            <h4>Search results</h4>
+            <VideoList videoArray={videoArray}></VideoList>
+          </Grid>
+        )}
+
+        <Grid item lg={6}>
           <FavoriteVideos></FavoriteVideos>
+        </Grid>
+        <Grid item lg={6}>
+          <SearchHistory
+            onClickItem={handleLastSearchVideoClick}
+          ></SearchHistory>
         </Grid>
       </Grid>
     </Container>

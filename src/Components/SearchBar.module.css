@@ -1,6 +1,6 @@
-.container {
-  border: 1px grey solid;
-  margin-bottom: 10px;
-  padding: 10px;
-  font-weight: bold;
+.textfield {
+  background-color: black;
+  color: grey;
+  border: none;
+  font-size: large;
 }

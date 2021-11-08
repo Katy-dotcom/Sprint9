@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./SearchBar.module.css";
+import IconButton from "@mui/material/IconButton";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 const SearchBar = ({ onSearch }) => {
   const [termFromSearchBar, setTermFromSearchBar] = useState("");
@@ -13,17 +15,19 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className={styles.container}>
-      Video Search
+    <div>
       <form onSubmit={handleSubmit}>
-        <button>Search</button>
+        <IconButton onClick={handleSubmit}>
+          <SearchOutlinedIcon style={{ color: "grey" }} />
+        </IconButton>
         <label htmlFor="termFromSearchBar"></label>
         <input
           type="text"
           id="termFromSearchBar"
-          placeholder="Search"
+          placeholder="Search..."
           onChange={searchedTermHandler}
           value={termFromSearchBar}
+          className={styles.textfield}
         />
       </form>
     </div>

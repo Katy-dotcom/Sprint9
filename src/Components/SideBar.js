@@ -14,7 +14,7 @@ import { NavLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 
 const SideBar = () => {
-  let drawerWidth = 240;
+  let drawerWidth = 180;
   const useStyles = makeStyles({
     paper: {
       background: "black",
@@ -24,49 +24,47 @@ const SideBar = () => {
   const styles = useStyles();
 
   return (
-    <>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-        }}
-        variant="permanent"
-        anchor="left"
-        classes={{ paper: styles.paper }}
-        xs={(drawerWidth = 120)}
-      >
-        <Toolbar />
+    <Drawer
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+      }}
+      variant="permanent"
+      anchor="left"
+      classes={{ paper: styles.paper }}
+      xs={(drawerWidth = 120)}
+    >
+      <Toolbar />
 
-        <List>
-          <NavLink exact to="/">
-            <ListItem button>
-              <ListItemIcon style={{ color: "white" }}>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText> Home </ListItemText>
-            </ListItem>
-          </NavLink>
+      <List>
+        <NavLink exact to="/">
+          <ListItem button>
+            <ListItemIcon style={{ color: "white" }}>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText> Home </ListItemText>
+          </ListItem>
+        </NavLink>
 
-          <NavLink to="/FavoriteVideos">
-            <ListItem button>
-              <ListItemIcon style={{ color: "white" }}>
-                <FavoriteIcon />
-              </ListItemIcon>
-              <ListItemText> Favourite videos </ListItemText>
-            </ListItem>
-          </NavLink>
+        <NavLink to="/FavoriteVideos">
+          <ListItem button>
+            <ListItemIcon style={{ color: "white" }}>
+              <FavoriteIcon />
+            </ListItemIcon>
+            <ListItemText> Favourite videos </ListItemText>
+          </ListItem>
+        </NavLink>
 
-          <NavLink to="/History">
-            <ListItem button>
-              <ListItemIcon style={{ color: "white" }}>
-                <HistoryIcon />
-              </ListItemIcon>
-              <ListItemText> History </ListItemText>
-            </ListItem>
-          </NavLink>
-        </List>
-      </Drawer>
-    </>
+        <NavLink to="/History">
+          <ListItem button>
+            <ListItemIcon style={{ color: "white" }}>
+              <HistoryIcon />
+            </ListItemIcon>
+            <ListItemText> History </ListItemText>
+          </ListItem>
+        </NavLink>
+      </List>
+    </Drawer>
   );
 };
 

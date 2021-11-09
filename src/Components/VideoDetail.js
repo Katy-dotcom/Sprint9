@@ -14,19 +14,16 @@ const VideoDetail = () => {
   //   console.log(selectedVideo);
   // }
   return (
-    <div>
+    <>
       {selectedVideo === null ? (
         <p>Select a video</p>
       ) : (
         <Card>
           <CardMedia
             component="iframe"
-            image={`https://www.youtube.com/embed/${selectedVideo.id.videoId}`}
+            src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}`}
             height="600"
-          >
-            {" "}
-            {selectedVideo.snippet.title}
-          </CardMedia>
+          ></CardMedia>
           <CardContent style={{ border: "1px solid grey" }}>
             <strong>{selectedVideo.snippet.title} </strong>
             <br /> {selectedVideo.snippet.description}
@@ -36,7 +33,7 @@ const VideoDetail = () => {
       <Link to="/History">
         <div style={{ color: "white" }}></div>
       </Link>
-    </div>
+    </>
   );
 };
 

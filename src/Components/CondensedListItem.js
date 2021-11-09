@@ -10,14 +10,13 @@ const CondensedListItem = ({ condensedItem, onClickItem }) => {
       {condensedItem && (
         <Grid
           container
-          spacing={0}
-          pt={2}
+          columnSpacing={1}
+          p={2}
           borderRadius={2}
           borderBottom={1}
           borderColor="grey"
           sx={{ backgroundColor: "#252130" }}
         >
-          {" "}
           <Grid item lg={1}>
             <ReactRoundedImage
               roundedSize="0"
@@ -26,17 +25,17 @@ const CondensedListItem = ({ condensedItem, onClickItem }) => {
               image={condensedItem.videos[0].snippet.thumbnails.default.url}
             />
           </Grid>
-          <Grid item lg={2}>
+          <Grid item lg={2} display="flex" alignItems="center">
             {condensedItem.searchedTerm}
           </Grid>
-          <Grid item lg={1}>
+          <Grid item lg={1} display="flex" alignItems="center">
             ·
           </Grid>
-          <Grid item lg={2}>
+          <Grid item lg={2} display="flex" alignItems="center">
             <Moment fromNow>{condensedItem.timestamp}</Moment>
           </Grid>
           <Grid item lg={3}></Grid>
-          <Grid item lg={3}>
+          <Grid item lg={3} display="flex" alignItems="center">
             <Button
               onClick={() => onClickItem(condensedItem.videos[0].id.videoId)}
               variant="contained"

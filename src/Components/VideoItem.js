@@ -44,7 +44,7 @@ const VideoItem = ({ video }) => {
   return (
     <>
       {video && video.snippet && (
-        <Card variant="outlined" sx={{ width: 220 }}>
+        <Card variant="outlined" sx={{ width: 280 }}>
           <Link
             to="/VideoDetail"
             key={video.id.videoId}
@@ -60,7 +60,7 @@ const VideoItem = ({ video }) => {
             />
             <CardContent>
               <Tooltip title={video.snippet.title}>
-                <Typography noWrap> {video.snippet.title}</Typography>
+                <Typography noWrap>{video.snippet.title}</Typography>
               </Tooltip>
             </CardContent>
           </Link>

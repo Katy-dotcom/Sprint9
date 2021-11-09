@@ -16,12 +16,13 @@ const MainBar = () => {
       }}
     >
       <Toolbar>
-        <Link to="/">
-          <Typography>
-            <img src={react} alt="logo" />
-          </Typography>
-        </Link>
-        <Typography variant="h4">ReactTube</Typography>
+        <Typography component={Link} to="/">
+          <img src={react} alt="logo" className="logo" />
+        </Typography>
+
+        <Typography variant="h4" component={Link} to="/">
+          ReactTube
+        </Typography>
       </Toolbar>
     </AppBar>
   );

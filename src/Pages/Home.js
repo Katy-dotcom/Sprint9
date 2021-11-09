@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import SearchBar from "../Components/SearchBar";
 import VideoList from "../Components/VideoList";
-import videoArrayJson from "../viddeoArrayJson.json";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import FavoriteVideos from "../Components/FavoriteVideos";
@@ -12,7 +11,7 @@ import RecommendedVideos from "../Components/RecommendedVideos";
 import SideBar from "../Components/SideBar";
 
 function Home() {
-  const [videoArray, setVideoArray] = useState(videoArrayJson.items);
+  const [videoArray, setVideoArray] = useState([]);
   const { condensedList, setCondensedList } = useContext(FavVideosContext);
   const [lastSearchSelectedVideo, setLastSearchSelectedVideo] = useState("");
   const [showRecommendedVideos, setShowRecommendedVideos] = useState(true);
@@ -51,7 +50,7 @@ function Home() {
         direction="row"
         justifyContent="center"
         alignItems="flex-start"
-        spacing={2}
+        columnSpacing={4}
       >
         {showRecommendedVideos ? (
           lastSearchSelectedVideo && (

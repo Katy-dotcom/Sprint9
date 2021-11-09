@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import VideoList from "../Components/VideoList";
 import { SelectedVideoContext } from "../Hooks/videoContext";
 import { FavVideosContext } from "../Hooks/videoContext";
+import Container from "@mui/material/Container";
 
 const History = () => {
   const { lastViewedVideos } = useContext(SelectedVideoContext);
@@ -14,13 +15,13 @@ const History = () => {
   ]);
 
   return (
-    <div>
+    <Container maxWidth="xl">
       <h4>Last viewed videos</h4>
       <VideoList videoArray={lastViewedVideos}></VideoList>
       <h4>Videos from last searched terms</h4>
 
       <VideoList videoArray={lastSearchedTermVideos}></VideoList>
-    </div>
+    </Container>
   );
 };
 

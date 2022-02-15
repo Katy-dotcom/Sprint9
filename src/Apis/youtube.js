@@ -6,6 +6,6 @@ export const youtube = axios.create({
     part: "snippet",
     type: "video",
     maxResults: 4,
-    key: "AIzaSyDcfqwbssY0fuiBxdY94B_x23O4X2QZLjo",
+    key: process.env.REACT_APP_YOUTUBE_API_KEY,
   },
 });

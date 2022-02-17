@@ -44,7 +44,7 @@ const VideoItem = ({ video }) => {
   return (
     <>
       {video && video.snippet && (
-        <Card variant="outlined" sx={{ width: 280 }}>
+        <Card variant="outlined">
           <Link
             to="/VideoDetail"
             key={video.id.videoId}

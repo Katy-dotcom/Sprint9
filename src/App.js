@@ -10,6 +10,8 @@ import MainBar from "./Components/MainBar";
 import SideBar from "./Components/SideBar";
 import { Toolbar } from "@mui/material";
 
+import "./App.css";
+
 function App() {
   return (
     <Box sx={{ display: "flex" }}>

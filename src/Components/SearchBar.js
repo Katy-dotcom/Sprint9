@@ -12,6 +12,7 @@ const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(termFromSearchBar);
+    setTermFromSearchBar("");
   };
 
   return (

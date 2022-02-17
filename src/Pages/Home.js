@@ -43,7 +43,7 @@ function Home() {
   return (
     <Container maxWidth="xl">
       <SearchBar onSearch={handleSubmit}></SearchBar>
-      <SideBar></SideBar>
+      {/* <SideBar></SideBar> */}
 
       <Grid
         container

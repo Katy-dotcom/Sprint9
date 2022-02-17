@@ -18,7 +18,7 @@ const VideoList = ({ videoArray }) => {
     >
       {videoArray &&
         videoArray.map((video) => (
-          <Grid item key={video.id.videoId}>
+          <Grid item xs={12} sm={6} lg={4} xl={3} key={video.id.videoId}>
             <VideoItem video={video} />
           </Grid>
         ))}
